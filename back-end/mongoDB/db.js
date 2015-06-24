@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/TravellerNetwork');
+var config = require('./config');
+mongoose.connect(config.get('connectionString'));
 var db = mongoose.connection;
 
 db.on('error', function(err){

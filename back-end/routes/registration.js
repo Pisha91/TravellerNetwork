@@ -10,19 +10,17 @@ router.post('/', function(req, res, next){
 		email: req.body.email,
 		password: req.body.password
 	});
-	
-	console.log(req.body);
-	console.log(account);
-	
+		
 	account.save(function(err, account){
 		if(err) {
 			console.log(err);
 		}else{
 			console.log('Account saved.');
+			console.log(account);
 		}
 	});
 	
-	res.send('registration');
+	res.end();
 });
 
 module.exports = router;
