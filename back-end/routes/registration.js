@@ -1,28 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/TravellerNetwork');
-var db = mongoose.connection;
-
-db.on('error', function(err){
-	console.error.bind(console, 'connection error: ');
-});
-
-db.on('open', function(callback){
-	console.log('DB connection open');
-});
-
-var Schema = mongoose.Schema;
-
-var accountSchema = new Schema({
-	firstName : String,
-	lastName : String,
-	login: String,
-	email : String,
-	password: String
-});
-
-var Account = mongoose.model('Account', accountSchema);
+var Account = require('../mongoDB/models/account')
 
 router.post('/', function(req, res, next){
 	var account = new Account({
