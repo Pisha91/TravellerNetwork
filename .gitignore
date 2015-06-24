@@ -9,6 +9,12 @@ front-end/.idea/modules.xml
 
 front-end/.idea/vcs.xml
 
+back-end/node_modules/
+
 .DS_Store
 
 .DS_Store
+
+front-end/.idea/workspace.xml
+
+front-end/.idea/workspace.xml
