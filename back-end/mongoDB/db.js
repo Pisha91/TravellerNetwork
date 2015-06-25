@@ -1,14 +1,15 @@
 var mongoose = require('mongoose');
 var config = require('../config');
+var log = require('../libs/log')(module);
 mongoose.connect(config.get('connectionString'));
 var db = mongoose.connection;
 
 db.on('error', function(err){
-	console.error.bind(console, 'connection error: ');
+	log.error(err);
 });
 
 db.on('open', function(callback){
-	console.log('DB connection open');
+	log.info('DB connection open');
 });
 
 module.exprorts = db;

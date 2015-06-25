@@ -1,4 +1,5 @@
 var express = require('express');
+var log = require('../libs/log')(module);
 var router = express.Router();
 var Account = require('../mongoDB/models/account')
 
@@ -13,10 +14,10 @@ router.post('/', function(req, res, next){
 		
 	account.save(function(err, account){
 		if(err) {
-			console.log(err);
+			log.error(err);
 		}else{
-			console.log('Account saved.');
-			console.log(account);
+			log.debug('Account saved.');
+			log.debug(account);
 		}
 	});
 	
