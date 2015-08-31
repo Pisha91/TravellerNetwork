@@ -48,3 +48,16 @@ label.checkbox{
 .slide-image-three{
   background-image: url('images/slide-three.png'); 
 }
+
+
+.form .has-error span{
+  color: #843534;
+}
+
+.form .row span{
+  margin-top: 5px;
+}
+
+.margin-bottom10px{
+  margin-bottom: 10px;
+}

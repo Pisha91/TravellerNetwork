@@ -1,1 +1,50 @@
-<span>Registration Form</span>
+<h4>Registration Form</h4>
+
+<form role="form" name="registartionForm" class="form">
+
+<div class="row margin-bottom10px" ng-class="{'has-error' : (registartionForm.firstname.$invalid && registartionForm.firstname.$dirty)}">
+    <div class="col-md-4">
+            <input type="text" class="form-control" name="firstname" ng-model="firstName" placeholder="First Name" required>
+    </div>
+    <span class="col-lg-6" ng-show="registartionForm.firstname.$error.required && registartionForm.firstname.$dirty">First name is required.</span>
+</div>
+
+    <div class="row margin-bottom10px" ng-class="{'has-error' : registartionForm.lastname.$invalid && registartionForm.lastname.$dirty}">
+        <div class="col-md-4">
+            <input type="text" class="form-control" name="lastname" ng-model="lastName" placeholder="Last Name" required>
+        </div>
+        <span class="col-lg-6 error" ng-show="registartionForm.lastname.$error.required && registartionForm.lastname.$dirty">Last name is required.</span>
+    </div>
+
+    <div class="row margin-bottom10px" ng-class="{'has-error' : registartionForm.email.$invalid && registartionForm.email.$dirty}">
+        <div class="col-md-4">
+            <input type="email" class="form-control" name="email" ng-model="email" placeholder="Email" required>
+        </div>
+        <span class="col-lg-6" ng-show="registartionForm.email.$error.required && registartionForm.email.$dirty">Email is required.</span>
+        <span class="col-lg-6" ng-show="registartionForm.email.$error.email && registartionForm.email.$dirty">Email is not valid.</span>
+    </div>
+
+    <div class="row margin-bottom10px" ng-class="{'has-error' : registartionForm.password.$invalid && registartionForm.password.$dirty}">
+        <div class="col-md-4">
+            <input type="text" class="form-control" name="password" ng-model="password" placeholder="Password" required>
+        </div>
+        <span class="col-lg-6" ng-show="registartionForm.password.$error.required && registartionForm.password.$dirty">Password name is required.</span>
+    </div>
+
+    <div class="row margin-bottom10px" ng-class="{'has-error' : registartionForm.confirmPassword.$invalid && registartionForm.confirmPassword.$dirty}">
+        <div class="col-md-4">
+            <input type="text" class="form-control" name="confirmPassword" ng-model="confirmPassword" placeholder="Confirm password" confirm-password="password" required>
+        </div>
+        <span class="col-lg-6" ng-show="registartionForm.confirmPassword.$error.required && registartionForm.confirmPassword.$dirty">Confirm password name is empty.</span>
+        <span class="col-lg-6" ng-show="registartionForm.confirmPassword.$error.confirmPassword && registartionForm.confirmPassword.$dirty && !registartionForm.confirmPassword.$error.required">Please enter the same value as password.</span>
+
+    </div>
+
+    <div class="row margin-bottom10px">
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-info" ng-click="submit" ng-disabled="registartionForm.$invalid">
+                Register
+            </button>
+        </div>
+    </div>
+</form>

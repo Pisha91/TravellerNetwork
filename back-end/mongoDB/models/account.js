@@ -4,7 +4,6 @@ var Schema = mongoose.Schema;
 var accountSchema = new Schema({
 	firstName : String,
 	lastName : String,
-	login: String,
 	email : String,
 	password: String
 });

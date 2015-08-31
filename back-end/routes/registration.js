@@ -7,7 +7,6 @@ router.post('/', function(req, res, next){
 	var account = new Account({
 		firstName : req.body.firstName,
 		lastName : req.body.lastName,
-		login: req.body.login,
 		email: req.body.email,
 		password: req.body.password
 	});
