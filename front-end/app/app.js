@@ -14,5 +14,8 @@ config(['$routeProvider', function($routeProvider) {
       .when('/registration', {
         templateUrl: 'views/registration.html',
         controller: 'registrationCtrl'
+      })
+      .when('/registratonsuccess',{
+          templateUrl: 'Views/registration_success.html'
       });
 }]);

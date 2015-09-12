@@ -5,6 +5,10 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var db = require('./mongoDB/db');
+var passport = require('passport');
+var oauth2 = require('oauth2/oauth2');
+require('oauth2/authorization');
+
 
 var routes = require('./routes/index');
 var registration = require('./routes/registration');
@@ -26,6 +30,34 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: true }}));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Enable CORS
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  
+  if ('OPTIONS' == req.method) {
+      res.sendStatus(200);
+    }
+    else {
+      next();
+    }
+});
+
+// Setup oauth2 authorization, authentication
+app.use(passport.initialize());
+app.post('/oauth/token', oauth2.token);
+app.get('/api/userInfo',
+    passport.authenticate('bearer', { session: false }),
+        function(req, res) {
+            // req.authInfo is set using the `info` argument supplied by
+            // `BearerStrategy`.  It is typically used to indicate scope of the token,
+            // and used in access control checks.  For illustrative purposes, this
+            // example simply returns the scope in the response.
+            res.json({ user_id: req.user.userId, name: req.user.username, scope: req.authInfo.scope })
+        }
+);
 
 app.use('/', routes);
 app.use('/registration', registration);
