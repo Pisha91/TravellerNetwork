@@ -37,3 +37,9 @@ server.exchange(oauth2orize.exchange.password(function(client, email, password, 
         });
 	});
 }));
+
+exports.token = [
+    passport.authenticate(['basic', 'oauth2-client-password'], { session: false }),
+    server.token(),
+    server.errorHandler()
+]

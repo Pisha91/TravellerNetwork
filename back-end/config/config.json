@@ -1,4 +1,5 @@
 {
 	"port" : 3000,
-	"connectionString": "mongodb://localhost/TravellerNetwork"
+	"connectionString": "mongodb://localhost/TravellerNetwork", 
+	"key": "m12i41r3xij934i9x4j30jz1jrjjsasda"
 }

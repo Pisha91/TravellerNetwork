@@ -9,4 +9,4 @@ var accessTokenSchema = new Schema({
 	created: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.module('AccessToken', accessTokenSchema);
+module.exports = mongoose.model('AccessToken', accessTokenSchema);

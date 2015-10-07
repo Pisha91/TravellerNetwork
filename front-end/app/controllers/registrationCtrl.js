@@ -9,7 +9,6 @@ travellerNetwork.controller('registrationCtrl', ['$scope', '$http', '$location',
             $http.post('http://localhost:3000/registration', account)
                 .then(
                 function (response) {
-                    console.log(response);
                     $location.path('/registratonsuccess');
                 },
                 function (response) {

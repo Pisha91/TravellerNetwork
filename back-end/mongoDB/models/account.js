@@ -18,13 +18,20 @@ accountSchema.methods.checkPassword = function(password) {
 	return this.hashedPassword == this.encryptPassword(password); 
 };
 
-accountSchema.virtual('userId').get(function(){ return this.id; });
+accountSchema.methods.toAccountObject = function(){
+	var object = this.toObject();
+	delete object.hashedPassword;
+	delete object.salt;
+	
+	return object;
+}
+
+accountSchema.virtual('id').get(function(){ return this.id; });
 accountSchema.virtual('password')
 	.set(function(password){ 
 		this._plainPassword = password;
 		this.salt = crypto.randomBytes(32).toString('base64');
 		this.hashedPassword = this.encryptPassword(password);
-	})
-	.get(function(){ return this._plainPassword; });
+	});
 
 module.exports = mongoose.model('Account', accountSchema);
