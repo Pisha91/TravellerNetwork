@@ -5,8 +5,12 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var db = require('./mongoDB/db');
-var cors = require('./middleware/cors');
 
+//middlewares
+var cors = require('./middlewares/cors');
+var authorization = require('./middlewares/authorization')
+
+//routes
 var index = require('./routes/index');
 var registration = require('./routes/registration');
 var signin = require('./routes/signin');
@@ -32,7 +36,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Enable CORS
 app.use(cors);
 
+// Registration route without authorization
 app.use(registration);
+
+// Register authorization middleware
+app.use(authorization);
+
+// Routes with authorization
 app.use(index);
 app.use(signin);
 
